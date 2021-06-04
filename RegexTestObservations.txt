@@ -1,0 +1,50 @@
+Analysed using regex101.com
+
+Captures link and heading in query result
+pattern
+<div class=\"kCrYT\">(?:<)a[^>]*href=\"(.*?)\">.*?<.*?<\/a>
+
+single page html response - 10 matches, 12063 steps
+monolith page html response - 100 matches, 92046 steps
+
+Captures link and heading in query result
+pattern
+<div class=\"kCrYT\"><a[^>]*href=\"\/url\?q(.*?)\">.+?<.+?<\/a>
+
+single page response - 10 matches, 11929 steps
+monolith page html response - 100 matches, 90742 steps
+
+Partial capture of link, ignoring subdomains and parameters. Only good for checking if url is contained within the capture
+pattern
+div class=\"kCrYT\">+?<a[^>]+?href=\"\/url\?q=http([\w\d:\/.]+)
+
+single page response - 10 matches, 15403 steps
+monolith page response - 100 matches, 35553 steps
+
+Partial capture of link, ignoring subdomains and parameters. Only good for checking if url is contained within the capture
+pattern
+<div class=\"kCrYT\">+?<a[^>]+?href=\"\/url\?q=http([\w\d:\/.]+)
+
+single page response - 10 matches, 5443 steps
+monolith page response - 100 matches, 22828 steps
+
+
+Captures full link in the result query
+pattern
+<div class=\"kCrYT\">+?<a[^>]+?href=\"\/url\?q=(http[s]?\:.+?)\">
+
+single page response - 10 matches, 8383 steps
+monolith page response - 100 matches, 53736 steps
+
+Captures full link and heading in the result query with separate groups
+pattern
+<div class=\"kCrYT\">+?<a[^>]+?href=\"\/url\?q=(http[s]?\:.+?)\"><h\d?.+div.+?>(.+?)<\/div><\/h\d?>.+?<\/div><\/a>
+
+single page response - catastrophic backtracking, 228357 steps
+
+Captures link and some heading text but includes some html unnecessarily
+pattern
+<div class=\"kCrYT\">+?<a[^>]+?href=\"\/url\?q=(http[s]?\:.+?)\">(.+?)<\/div><\/h\d?>
+
+single page response - 10 matches, 10433 steps
+monolith page response - 100 matches, 74264 steps
