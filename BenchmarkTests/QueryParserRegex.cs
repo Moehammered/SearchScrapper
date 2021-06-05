@@ -12,7 +12,8 @@ namespace BenchmarkTests
         private string HtmlSample { get; set; }
         private string[] HtmlSamples { get; set; }
         private Regex RegexInstance { get; set; }
-        [Params("www.smokeball.com.au", "www.notgonnabefound.worstcase.com.au")]
+        [Params("www.smokeball.com.au", "www.notgonnabefound.worstcase.com.au",
+            "www.redkeyconveyancing.com.au")]
         public string UrlTarget { get; set; }
         private const string QueryResultClass = "kCrYT";
         private const string QueryResultPattern = "<div class=\"{_queryClass_}\">(?:<)a[^>]*href=\"(.*?)\">.*?<.*?<\\/a>";

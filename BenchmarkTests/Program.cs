@@ -6,7 +6,14 @@ namespace BenchmarkTests
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<QueryParserRegex>();
+#if DEBUG
+            var runner = new LinkHeadingRegexParser();
+            runner.Setup();
+            runner.TargetUrl = "www.smokeball.com.au";
+            runner.FindDomainPosition();
+#else
+            BenchmarkRunner.Run<RegexComparisonBenchmark>();
+#endif
         }
     }
 }

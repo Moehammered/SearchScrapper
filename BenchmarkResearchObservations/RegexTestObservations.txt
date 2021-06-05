@@ -48,3 +48,10 @@ pattern
 
 single page response - 10 matches, 10433 steps
 monolith page response - 100 matches, 74264 steps
+
+Captures link and heading text
+pattern
+<div class=\"kCrYT\">+?<a[^>]+?href=\"\/url\?q=(http[s]?\:.+?)\">.+?div.+?>(.+?)<\/div><\/h\d?>
+
+single page response - 10 matches, 9893 steps
+monolith page response - 100 matches, 68864 steps
