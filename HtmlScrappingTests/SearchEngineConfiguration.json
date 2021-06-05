@@ -1,0 +1,31 @@
+{
+  "searchEngines": [
+    {
+      "name": "google-au",
+      "searchUrl": "https://www.google.com.au/search?",
+      "queryParam": "q",
+      "countParam": "num",
+      "maxCount": "100",
+      "offsetParam": "start",
+      "regex": "<div class=\"{_queryResultClass_}\">+?<a[^>]+?href=\"\\/url\\?q=(http[s]?\\:.+?)\">.+?div.+?>(.+?)<\\/div><\\/h\\d?>",
+      "divClassTemplate": "{_queryResultClass_}",
+      "divClass": "kCrYT"
+    },
+    {
+      "name": "bing",
+      "searchUrl": "https://www.bing.com/search?",
+      "queryParam": "q",
+      "countParam": "count",
+      "maxCount": "50",
+      "offsetParam": "first"
+    },
+    {
+      "name": "yahoo",
+      "searchUrl": "https://au.search.yahoo.com/search?",
+      "queryParam": "q",
+      "countParam": "pz",
+      "maxCount": "50",
+      "offsetParam": "b"
+    }
+  ]
+}
