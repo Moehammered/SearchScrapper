@@ -1,0 +1,11 @@
+{
+  "google-au": {
+    "regex": "<div class=\"{_queryResultClass_}\">+?<a[^>]+?href=\"\\/url\\?q=(http[s]?\\:.+?)\">.+?div.+?>(.+?)<\\/div><\\/h\\d?>",
+    "template": "{_queryResultClass_}",
+    "templateValue": "kCrYT",
+    "urlGroupIndex": 1,
+    "urlGroupName": "1",
+    "headingGroupIndex": 2,
+    "headingGroupName": "2"
+  }
+}

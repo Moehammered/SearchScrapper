@@ -1,0 +1,20 @@
+{
+  "clientRequestHeaders": {
+    "accept": "text/html",
+    "accept-language": "en-AU,en;q=0.9,ja-JP;q=0.8,ja;q=0.7,en-GB;q=0.6,en-US;q=0.5",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+  },
+  "colonEncasedHeaders": {
+    "authority": "www.google.com.au",
+    "method": "GET",
+    "scheme": "https"
+  },
+  "google": {
+    "name": "google-au",
+    "searchUrl": "https://www.google.com.au/search?",
+    "queryParam": "q",
+    "countParam": "num",
+    "maxCount": "100",
+    "offsetParam": "start"
+  }
+}
