@@ -7,8 +7,9 @@ using Microsoft.OpenApi.Models;
 using SearchScraping.Models.Configuration;
 using SearchScraping.Services;
 using SearchScraping.Templates;
+using System.Linq;
 
-namespace SearchScrapperWebService
+namespace SearchScraperWebService
 {
     public class Startup
     {
@@ -24,20 +25,22 @@ namespace SearchScrapperWebService
             services.AddHttpClient<ISearchService, SearchService>(x =>
             {
                 //with these headers, the retrieved html matches a regular google search...
-                //var defaultHeaders = Configuration.GetSection("clientRequestHeaders")
-                //    .GetChildren()
-                //    .ToDictionary(x => x.Key, y => y.Value);
+                /**
+                var defaultHeaders = Configuration.GetSection("clientRequestHeaders")
+                    .GetChildren()
+                    .ToDictionary(x => x.Key, y => y.Value);
 
-                //var headers = x.DefaultRequestHeaders;
-                //headers.UserAgent.Clear();
-                //foreach (var header in defaultHeaders)
-                //    headers.Add(header.Key, header.Value);
+                var headers = x.DefaultRequestHeaders;
+                headers.UserAgent.Clear();
+                foreach (var header in defaultHeaders)
+                    headers.Add(header.Key, header.Value);
 
-                //var colonHeaders = Configuration.GetSection("colonEncasedHeaders")
-                //    .GetChildren()
-                //    .ToDictionary(x => $":{x.Key}:", y => y.Value);
-                //foreach (var header in colonHeaders)
-                //    headers.TryAddWithoutValidation(header.Key, header.Value);
+                var colonHeaders = Configuration.GetSection("colonEncasedHeaders")
+                    .GetChildren()
+                    .ToDictionary(x => $":{x.Key}:", y => y.Value);
+                foreach (var header in colonHeaders)
+                    headers.TryAddWithoutValidation(header.Key, header.Value);
+                */
             });
             services.AddControllers();
             services.AddSwaggerGen(c =>
