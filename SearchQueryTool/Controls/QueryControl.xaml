@@ -1,0 +1,35 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SearchQueryTool.Controls"
+             xmlns:Models="clr-namespace:SearchQueryTool.Models" x:Class="SearchQueryTool.Controls.QueryControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="64" d:DesignWidth="400">
+    <UserControl.DataContext>
+        <Models:SearchQuery ResultLimit="100" SearchTerm="conveyancing software" UrlMatch="www.smokeball.com.au"/>
+    </UserControl.DataContext>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" MaxWidth="100"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="0" x:Name="TermGroup" Header="Search Term">
+            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBox x:Name="SearchTermText" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" Background="LightGray" Text="{Binding SearchTerm, Mode=TwoWay}" DockPanel.Dock="Left" TextWrapping="Wrap" MaxWidth="150" UseLayoutRounding="True" />
+            </DockPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" x:Name="UrlGroup" Header="URL to look for">
+            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBox x:Name="UrlText" HorizontalAlignment="Stretch" Background="LightGray" Text="{Binding UrlMatch, Mode=TwoWay}" DockPanel.Dock="Left" />
+            </DockPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="2" x:Name="ResultLimitGroup" Header="Result Limit">
+            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBox x:Name="LimitText" HorizontalAlignment="Stretch" Background="LightGray" Text="{Binding ResultLimit, Mode=TwoWay, NotifyOnValidationError=True}" DockPanel.Dock="Left" />
+            </DockPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

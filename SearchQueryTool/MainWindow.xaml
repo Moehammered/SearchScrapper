@@ -1,0 +1,30 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SearchQueryTool"
+        xmlns:Controls="clr-namespace:SearchQueryTool.Controls" xmlns:Models="clr-namespace:SearchScraping.Models;assembly=SearchScraping" x:Class="SearchQueryTool.MainWindow"
+        mc:Ignorable="d"
+        Title="Search Query Tool" Height="450" Width="600" ResizeMode="CanResize">
+    <Window.DataContext>
+        <Models:SearchResult/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Controls:QueryControl x:Name="SearchQueryControl" Grid.Row="0"/>
+        <Button x:Name="FakeSearch" Click="FakeSearch_Click" Content="Fake Search" HorizontalAlignment="Left" Margin="84,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+        <Button x:Name="SearchButton" Click="PerformSearch" Content="Search" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+        <DataGrid HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" x:Name="dataGrid" Grid.Row="2" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="Auto" Header="Position" Binding="{Binding Position}"/>
+                <DataGridTextColumn Width="Auto" Header="Heading" Binding="{Binding Heading}"/>
+                <DataGridHyperlinkColumn Width="*" Header="Url" Binding="{Binding Url}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
