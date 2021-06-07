@@ -12,4 +12,10 @@
     <ProjectReference Include="..\SearchScrapping\SearchScraping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="dummy-data\google-au_allLinks.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

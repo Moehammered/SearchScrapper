@@ -39,6 +39,7 @@ namespace SearchScraperWebService.Controllers
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> SearchAsync(CancellationToken ct, string query, uint resultCount = 100)
         {
+            return NotFound("Search unavailable at this time...");
             var html = await SearchSvc.FetchQueryResultsAsync(GoogleConfig, query, resultCount, ct);
             if (string.IsNullOrWhiteSpace(html))
             {
@@ -56,7 +57,47 @@ namespace SearchScraperWebService.Controllers
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> FindRankingAsync(CancellationToken ct, string query, string url, uint resultCount = 100)
         {
+            return NotFound("Search unavailable at this time...");
+
             var html = await SearchSvc.FetchQueryResultsAsync(GoogleConfig, query, resultCount, ct);
+            if (string.IsNullOrWhiteSpace(html))
+            {
+                return BadRequest($"Search term '{query}' returned nothing when searching Google. " +
+                    $"Please wait then try again.");
+            }
+            else
+            {
+                var results = HtmlParser.ParseResults(html);
+                var result = results.FirstOrDefault(x => x.Url.ToLower().Contains(url.ToLower()));
+                return Ok(result);
+            }
+        }
+
+        // debugging -- dummy versions
+        [HttpGet("DummySearch")]
+        [ValidateEmptyStringParams]
+        [ProducesResponseType(typeof(IEnumerable<SearchResult>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        public async Task<IActionResult> SearchDummyAsync(CancellationToken ct, string query, uint resultCount = 100)
+        {
+            var html = await System.IO.File.ReadAllTextAsync("dummy-data/google-au_allLinks.html");
+            if (string.IsNullOrWhiteSpace(html))
+            {
+                return BadRequest($"Search term '{query}' returned nothing when searching Google. " +
+                    $"Please wait then try again.");
+            }
+            else
+                return Ok(HtmlParser.ParseResults(html));
+        }
+
+        [HttpGet("DummyRanking")]
+        [ValidateEmptyStringParams]
+        [ValidatePositiveIntegerParams]
+        [ProducesResponseType(typeof(SearchResult), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        public async Task<IActionResult> FindRankingDummyAsync(CancellationToken ct, string query, string url, uint resultCount = 100)
+        {
+            var html = await System.IO.File.ReadAllTextAsync("dummy-data/google-au_allLinks.html");
             if (string.IsNullOrWhiteSpace(html))
             {
                 return BadRequest($"Search term '{query}' returned nothing when searching Google. " +

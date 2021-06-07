@@ -7,19 +7,18 @@
         xmlns:Controls="clr-namespace:SearchQueryTool.Controls" xmlns:Models="clr-namespace:SearchScraping.Models;assembly=SearchScraping" x:Class="SearchQueryTool.MainWindow"
         mc:Ignorable="d"
         Title="Search Query Tool" Height="450" Width="600" ResizeMode="CanResize">
-    <Window.DataContext>
-        <Models:SearchResult/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Controls:QueryControl x:Name="SearchQueryControl" Grid.Row="0"/>
         <Button x:Name="FakeSearch" Click="FakeSearch_Click" Content="Fake Search" HorizontalAlignment="Left" Margin="84,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
-        <Button x:Name="SearchButton" Click="PerformSearch" Content="Search" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
-        <DataGrid HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" x:Name="dataGrid" Grid.Row="2" AutoGenerateColumns="False">
+        <Button x:Name="SearchButton" Click="PerformSearch" IsEnabled="False" Content="Search" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+        <Controls:SearchResultsList x:Name="MatchedDisplay" Grid.Row="2"/>
+        <DataGrid  SelectionMode="Single" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" x:Name="AllResults" Grid.Row="3" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="Auto" Header="Position" Binding="{Binding Position}"/>
                 <DataGridTextColumn Width="Auto" Header="Heading" Binding="{Binding Heading}"/>

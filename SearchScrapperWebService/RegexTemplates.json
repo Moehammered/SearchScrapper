@@ -1,6 +1,6 @@
 {
   "google-au": {
-    "regex": "<div class=\"{_queryResultClass_}\">+?<a[^>]+?href=\"\\/url\\?q=(http[s]?\\:.+?)\">.+?div.+?>(.+?)<\\/div><\\/h\\d?>",
+    "regex": "<div class=\"ZINbbc xpd O9g5cc uUPGi\".+?<div class=\"{_queryResultClass_}\">+?<a[^>]+?href=\"\\/url\\?q=(http[s]?\\:.+?)\">.+?div.+?>(.+?)<\\/div><\\/h\\d?>",
     "template": "{_queryResultClass_}",
     "templateValue": "kCrYT",
     "urlGroupIndex": 1,

@@ -126,6 +126,15 @@ namespace HtmlScrappingTests
             Assert.ThrowsException<InvalidOperationException>(action);
         }
 
+        [TestMethod]
+        public void FindNoBadHeadingsResult()
+        {
+            var results = ParseResults(LoadMonolithHtml());
+            var badResults = results.Where(x => x.Heading.Contains("</"));
+
+            Assert.IsFalse(badResults.Any());
+        }
+
         private IEnumerable<SearchResult> ParseResults(string query)
         {
             var googleEngine = LoadGoogleData();

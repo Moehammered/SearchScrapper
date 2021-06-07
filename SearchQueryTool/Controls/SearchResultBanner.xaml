@@ -1,0 +1,33 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SearchQueryTool.Controls"
+             xmlns:Models="clr-namespace:SearchScraping.Models;assembly=SearchScraping" x:Class="SearchQueryTool.Controls.SearchResultBanner"
+             mc:Ignorable="d" 
+             d:DesignHeight="64" d:DesignWidth="400">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="4">
+            <Label BorderBrush="AliceBlue" BorderThickness="3" Content="Position"/>
+            <TextBlock Text="{Binding Position}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="4">
+            <Label BorderBrush="AliceBlue" BorderThickness="3" Content="Heading"/>
+            <TextBlock Text="{Binding Heading}" TextWrapping="Wrap" FontSize="10"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Margin="4">
+            <Label BorderBrush="AliceBlue" BorderThickness="3" Content="Url"/>
+            <TextBlock>
+                <Hyperlink NavigateUri="{Binding Url}" RequestNavigate="OpenUrl">
+                    <Label Content="{Binding Url}"/>
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>
