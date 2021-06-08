@@ -19,7 +19,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Controls:QueryControl DataContext="{Binding SearchQuery}" Grid.Row="0"/>
-        <Button Command="{Binding FetchResultsAsync}" CommandParameter="nothing" IsEnabled="True" Content="Fake Search" HorizontalAlignment="Left" Margin="84,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+        <Button Command="{Binding FetchResultsAsync}" CommandParameter="nothing" IsEnabled="True" Content="Search" HorizontalAlignment="Left" Margin="84,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
         <Controls:SearchResultsList Grid.Row="2"/>
         <DataGrid ItemsSource="{Binding Results}" SelectionMode="Single" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="3" AutoGenerateColumns="False">
             <DataGrid.Columns>

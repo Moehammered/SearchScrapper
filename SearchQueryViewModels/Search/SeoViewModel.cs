@@ -45,18 +45,19 @@ namespace SearchQueryViewModels.Search
 
         public ICommand FetchResultsAsync { get; set; }
         public bool Ready { get; set; } = true;
+        public string WebServer { get; set; } = "https://localhost:44368";
 
         private readonly HttpClient Client;
         private readonly JsonSerializerOptions SerialisationOptions;
 
         public SeoViewModel()
         {
+            Client = new HttpClient();
             FetchResultsAsync = new AsyncGenericCommand<object>(PerformSearchAsync, (o) => Ready);
-            Client = new HttpClient()
-            {
-                BaseAddress = new Uri("https://localhost:44368")
+            SerialisationOptions = new JsonSerializerOptions() 
+            { 
+                PropertyNameCaseInsensitive = true 
             };
-            SerialisationOptions = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
         }
 
         private async Task PerformSearchAsync(object param)
@@ -64,7 +65,7 @@ namespace SearchQueryViewModels.Search
             Ready = false;
             RaisePropertyChanged(nameof(Ready));
 
-            var restCall = $"/api/GoogleSearch/DummySearch?" +
+            var restCall = $"{WebServer}/api/GoogleSearch/Search?" +
                     $"query={SearchQuery.SearchTerm}" +
                     $"&resultCount={SearchQuery.ResultLimit}";
             var json = await Client.GetStringAsync(restCall);

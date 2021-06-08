@@ -39,7 +39,6 @@ namespace SearchScraperWebService.Controllers
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> SearchAsync(CancellationToken ct, string query, uint resultCount = 100)
         {
-            return NotFound("Search unavailable at this time...");
             var html = await SearchSvc.FetchQueryResultsAsync(GoogleConfig, query, resultCount, ct);
             if (string.IsNullOrWhiteSpace(html))
             {
@@ -53,12 +52,10 @@ namespace SearchScraperWebService.Controllers
         [HttpGet("Ranking")]
         [ValidateEmptyStringParams]
         [ValidatePositiveIntegerParams]
-        [ProducesResponseType(typeof(SearchResult), 200)]
+        [ProducesResponseType(typeof(IEnumerable<int>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> FindRankingAsync(CancellationToken ct, string query, string url, uint resultCount = 100)
         {
-            return NotFound("Search unavailable at this time...");
-
             var html = await SearchSvc.FetchQueryResultsAsync(GoogleConfig, query, resultCount, ct);
             if (string.IsNullOrWhiteSpace(html))
             {
@@ -68,8 +65,8 @@ namespace SearchScraperWebService.Controllers
             else
             {
                 var results = HtmlParser.ParseResults(html);
-                var result = results.FirstOrDefault(x => x.Url.ToLower().Contains(url.ToLower()));
-                return Ok(result);
+                var matches = results.Where(x => x.Url.ToLower().Contains(url.ToLower()));
+                return Ok(matches.Select(x => x.Position));
             }
         }
 
@@ -93,7 +90,7 @@ namespace SearchScraperWebService.Controllers
         [HttpGet("DummyRanking")]
         [ValidateEmptyStringParams]
         [ValidatePositiveIntegerParams]
-        [ProducesResponseType(typeof(SearchResult), 200)]
+        [ProducesResponseType(typeof(IEnumerable<int>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> FindRankingDummyAsync(CancellationToken ct, string query, string url, uint resultCount = 100)
         {
@@ -106,8 +103,8 @@ namespace SearchScraperWebService.Controllers
             else
             {
                 var results = HtmlParser.ParseResults(html);
-                var result = results.FirstOrDefault(x => x.Url.ToLower().Contains(url.ToLower()));
-                return Ok(result);
+                var matches = results.Where(x => x.Url.ToLower().Contains(url.ToLower()));
+                return Ok(matches.Select(x => x.Position));
             }
         }
     }

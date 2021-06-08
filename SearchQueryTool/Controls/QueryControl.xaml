@@ -17,19 +17,19 @@
             <ColumnDefinition Width="*" MaxWidth="100"/>
         </Grid.ColumnDefinitions>
         <GroupBox Grid.Column="0" x:Name="TermGroup" Header="Search Term">
-            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                <TextBox SpellCheck.IsEnabled="True" HorizontalAlignment="Left" 
+            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <TextBox SpellCheck.IsEnabled="True" HorizontalAlignment="Stretch" 
                          Background="LightGray" Text="{Binding SearchTerm, Mode=TwoWay}" 
                          DockPanel.Dock="Left" TextWrapping="Wrap" 
-                         MaxWidth="150" UseLayoutRounding="True" />
+                         UseLayoutRounding="True" />
             </DockPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="URL to look for">
-            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Stretch">
                 <TextBox x:Name="UrlText" HorizontalAlignment="Stretch" Background="LightGray" Text="{Binding Url, Mode=TwoWay}" DockPanel.Dock="Left" />
             </DockPanel>
         </GroupBox>
-        <GroupBox Grid.Column="2" Header="Result Limit">
+        <GroupBox Grid.Column="2" Header="Result Limit" Visibility="Hidden">
             <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                 <TextBox HorizontalAlignment="Stretch" Background="LightGray" Text="{Binding ResultLimit, Mode=TwoWay, NotifyOnValidationError=True}" DockPanel.Dock="Left" />
             </DockPanel>

@@ -4,9 +4,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SearchScraping.Interfaces;
 using SearchScraping.Models.Configuration;
 using SearchScraping.Services;
 using SearchScraping.Templates;
+using SearchScraping.Utility;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SearchScraperWebService
@@ -14,33 +17,37 @@ namespace SearchScraperWebService
     public class Startup
     {
         public IConfiguration Configuration { get; }
+        private readonly HttpHeaderUtility HeaderUtility;
 
         public Startup(IConfiguration configuration)
-            => Configuration = configuration;
+        { 
+            Configuration = configuration;
+            HeaderUtility = new HttpHeaderUtility(CreateRandomHeaderProvider(configuration), true);
+        }
+
+        private IHttpHeaderProvider CreateRandomHeaderProvider(IConfiguration config)
+        {
+            var colonHeaders = BuildColonHeaders(Configuration);
+            var accepts = Configuration.GetSection("accepts").Get<IEnumerable<string>>();
+            var languages = Configuration.GetSection("acceptLanguages").Get<IEnumerable<string>>();
+            var userAgents = Configuration.GetSection("userAgents").Get<IEnumerable<string>>();
+
+            return new RandomHttpHeaders(accepts, userAgents, languages, colonHeaders);
+        }
+
+        private IEnumerable<KeyValuePair<string,string>> BuildColonHeaders(IConfiguration config)
+        {
+            var specialHeaders = Configuration.GetSection("colonEncasedHeaders").Get<IDictionary<string, string>>();
+            return specialHeaders.Select(x => new KeyValuePair<string, string>($":{x.Key}:", x.Value));
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<SearchResultCaptureTemplate>(Configuration.GetSection("google-au"));
             services.Configure<SearchEngineConfiguration>(Configuration.GetSection("google"));
-            services.AddHttpClient<ISearchService, SearchService>(x =>
+            services.AddHttpClient<ISearchService, CachedSearchService>(x =>
             {
-                //with these headers, the retrieved html matches a regular google search...
-                /**
-                var defaultHeaders = Configuration.GetSection("clientRequestHeaders")
-                    .GetChildren()
-                    .ToDictionary(x => x.Key, y => y.Value);
-
-                var headers = x.DefaultRequestHeaders;
-                headers.UserAgent.Clear();
-                foreach (var header in defaultHeaders)
-                    headers.Add(header.Key, header.Value);
-
-                var colonHeaders = Configuration.GetSection("colonEncasedHeaders")
-                    .GetChildren()
-                    .ToDictionary(x => $":{x.Key}:", y => y.Value);
-                foreach (var header in colonHeaders)
-                    headers.TryAddWithoutValidation(header.Key, header.Value);
-                */
+                HeaderUtility.ConfigureHttpClient(x);
             });
             services.AddControllers();
             services.AddSwaggerGen(c =>
