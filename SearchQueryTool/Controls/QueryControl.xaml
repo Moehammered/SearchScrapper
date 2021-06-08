@@ -1,14 +1,14 @@
 ﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SearchQueryTool.Controls"
-             xmlns:Models="clr-namespace:SearchQueryTool.Models" x:Class="SearchQueryTool.Controls.QueryControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:search="clr-namespace:SearchQueryViewModels.Search;assembly=SearchQueryViewModels"
+    x:Class="SearchQueryTool.Controls.QueryControl"
              mc:Ignorable="d" 
              d:DesignHeight="64" d:DesignWidth="400">
     <UserControl.DataContext>
-        <Models:SearchQuery ResultLimit="100" SearchTerm="conveyancing software" UrlMatch="www.smokeball.com.au"/>
+        <search:SearchQueryViewModel/>
     </UserControl.DataContext>
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -18,17 +18,20 @@
         </Grid.ColumnDefinitions>
         <GroupBox Grid.Column="0" x:Name="TermGroup" Header="Search Term">
             <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                <TextBox x:Name="SearchTermText" SpellCheck.IsEnabled="True" HorizontalAlignment="Left" Background="LightGray" Text="{Binding SearchTerm, Mode=TwoWay}" DockPanel.Dock="Left" TextWrapping="Wrap" MaxWidth="150" UseLayoutRounding="True" />
+                <TextBox SpellCheck.IsEnabled="True" HorizontalAlignment="Left" 
+                         Background="LightGray" Text="{Binding SearchTerm, Mode=TwoWay}" 
+                         DockPanel.Dock="Left" TextWrapping="Wrap" 
+                         MaxWidth="150" UseLayoutRounding="True" />
             </DockPanel>
         </GroupBox>
-        <GroupBox Grid.Column="1" x:Name="UrlGroup" Header="URL to look for">
+        <GroupBox Grid.Column="1" Header="URL to look for">
             <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                <TextBox x:Name="UrlText" HorizontalAlignment="Stretch" Background="LightGray" Text="{Binding UrlMatch, Mode=TwoWay}" DockPanel.Dock="Left" />
+                <TextBox x:Name="UrlText" HorizontalAlignment="Stretch" Background="LightGray" Text="{Binding Url, Mode=TwoWay}" DockPanel.Dock="Left" />
             </DockPanel>
         </GroupBox>
-        <GroupBox Grid.Column="2" x:Name="ResultLimitGroup" Header="Result Limit">
+        <GroupBox Grid.Column="2" Header="Result Limit">
             <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                <TextBox x:Name="LimitText" HorizontalAlignment="Stretch" Background="LightGray" Text="{Binding ResultLimit, Mode=TwoWay, NotifyOnValidationError=True}" DockPanel.Dock="Left" />
+                <TextBox HorizontalAlignment="Stretch" Background="LightGray" Text="{Binding ResultLimit, Mode=TwoWay, NotifyOnValidationError=True}" DockPanel.Dock="Left" />
             </DockPanel>
         </GroupBox>
     </Grid>

@@ -1,8 +1,4 @@
-﻿using SearchScraping.Models;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Controls;
 
 namespace SearchQueryTool.Controls
 {
@@ -11,11 +7,6 @@ namespace SearchQueryTool.Controls
         public SearchResultsList()
         {
             InitializeComponent();
-        }
-
-        public void SetResults(IEnumerable<SearchResult> results)
-        {
-            listBox.ItemsSource = results;
         }
     }
 }

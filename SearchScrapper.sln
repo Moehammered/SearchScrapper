@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchScraperWebService", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchScraping", "SearchScrapping\SearchScraping.csproj", "{24CC83C3-61E3-4DDF-B12D-049DCDDD8BF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchQueryTool", "SearchQueryTool\SearchQueryTool.csproj", "{E01A6D73-07D1-40C8-A2ED-25372CCFAE69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchQueryTool", "SearchQueryTool\SearchQueryTool.csproj", "{E01A6D73-07D1-40C8-A2ED-25372CCFAE69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchQueryViewModels", "SearchQueryViewModels\SearchQueryViewModels.csproj", "{F14E80A5-B343-4A02-B11B-BDE62580BB53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E01A6D73-07D1-40C8-A2ED-25372CCFAE69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E01A6D73-07D1-40C8-A2ED-25372CCFAE69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E01A6D73-07D1-40C8-A2ED-25372CCFAE69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F14E80A5-B343-4A02-B11B-BDE62580BB53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F14E80A5-B343-4A02-B11B-BDE62580BB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F14E80A5-B343-4A02-B11B-BDE62580BB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F14E80A5-B343-4A02-B11B-BDE62580BB53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SearchQueryViewModels\SearchQueryViewModels.csproj" />
     <ProjectReference Include="..\SearchScrapping\SearchScraping.csproj" />
   </ItemGroup>
 
