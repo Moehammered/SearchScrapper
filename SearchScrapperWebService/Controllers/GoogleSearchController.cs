@@ -4,7 +4,7 @@ using SearchScraperWebService.Filters;
 using SearchScraping.Interfaces;
 using SearchScraping.Models;
 using SearchScraping.Models.Configuration;
-using SearchScraping.Scrappers;
+using SearchScraping.Scrapers;
 using SearchScraping.Services;
 using SearchScraping.Templates;
 using System.Collections.Generic;

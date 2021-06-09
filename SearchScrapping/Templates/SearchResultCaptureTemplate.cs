@@ -15,7 +15,7 @@ namespace SearchScraping.Templates
         public int HeadingGroupIndex { get; set; }
         public string HeadingGroupName { get; set; }
 
-        public Regex BuildRegex() => new Regex(Pattern);
+        public Regex BuildRegex() => new Regex(Pattern, RegexOptions.Compiled, new System.TimeSpan(0, 0, 5));
 
         public override string ToString()
             => $"{Pattern}\n" +

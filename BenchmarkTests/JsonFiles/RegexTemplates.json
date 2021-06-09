@@ -1,0 +1,20 @@
+{
+  "google-au-robot": {
+    "regex": "<div class=\"ZINbbc xpd O9g5cc uUPGi\".+?<div class=\"{_queryResultClass_}\">+?<a[^>]+?href=\"\\/url\\?q=(http[s]?\\:.+?)\">.+?div.+?>(.+?)<\\/div><\\/h\\d?>",
+    "template": "{_queryResultClass_}",
+    "templateValue": "kCrYT",
+    "urlGroupIndex": 1,
+    "urlGroupName": "1",
+    "headingGroupIndex": 2,
+    "headingGroupName": "2"
+  },
+  "google-au": {
+    "regex": "<div class=\"g\">.+?<div class=\"{_headingClass_}\".+?<a[^>]+?href=\"(http[s]?\\:.+?)\".+?>.+?<h\\d?.+?>(.+?)<\\/h\\d?>",
+    "template": "{_headingClass_}",
+    "templateValue": "yuRUbf",
+    "urlGroupIndex": 1,
+    "urlGroupName": "1",
+    "headingGroupIndex": 2,
+    "headingGroupName": "2"
+  }
+}

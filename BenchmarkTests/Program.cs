@@ -12,7 +12,8 @@ namespace BenchmarkTests
             runner.TargetUrl = "www.smokeball.com.au";
             runner.FindDomainPosition();
 #else
-            BenchmarkRunner.Run<RegexComparisonBenchmark>();
+            //BenchmarkRunner.Run<RegexComparisonBenchmark>();
+            BenchmarkRunner.Run<FallbackParserBenchmark>();
 #endif
         }
     }

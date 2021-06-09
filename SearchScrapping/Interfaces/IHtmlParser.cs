@@ -5,6 +5,7 @@ namespace SearchScraping.Interfaces
 {
     public interface IHtmlParser
     {
+        bool CanParse(string html);
         IEnumerable<SearchResult> ParseResults(string html);
     }
 }

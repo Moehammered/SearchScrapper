@@ -3,7 +3,7 @@ using SearchScraping.Models;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace SearchScraping.Scrappers
+namespace SearchScraping.Scrapers
 {
     public class SearchResultRegex : IHtmlParser
     {
@@ -36,5 +36,8 @@ namespace SearchScraping.Scrappers
                 match = match.NextMatch();
             }
         }
+
+        public bool CanParse(string html)
+            => HtmlRegex.IsMatch(html);
     }
 }

@@ -11,6 +11,7 @@ using SearchScraping.Templates;
 using SearchScraping.Utility;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 
 namespace SearchScraperWebService
 {
@@ -20,7 +21,7 @@ namespace SearchScraperWebService
         private readonly HttpHeaderUtility HeaderUtility;
 
         public Startup(IConfiguration configuration)
-        { 
+        {
             Configuration = configuration;
             HeaderUtility = new HttpHeaderUtility(CreateRandomHeaderProvider(configuration), true);
         }
@@ -35,7 +36,7 @@ namespace SearchScraperWebService
             return new RandomHttpHeaders(accepts, userAgents, languages, colonHeaders);
         }
 
-        private IEnumerable<KeyValuePair<string,string>> BuildColonHeaders(IConfiguration config)
+        private IEnumerable<KeyValuePair<string, string>> BuildColonHeaders(IConfiguration config)
         {
             var specialHeaders = Configuration.GetSection("colonEncasedHeaders").Get<IDictionary<string, string>>();
             return specialHeaders.Select(x => new KeyValuePair<string, string>($":{x.Key}:", x.Value));
@@ -45,9 +46,13 @@ namespace SearchScraperWebService
         {
             services.Configure<SearchResultCaptureTemplate>(Configuration.GetSection("google-au"));
             services.Configure<SearchEngineConfiguration>(Configuration.GetSection("google"));
-            services.AddHttpClient<ISearchService, CachedSearchService>(x =>
+            services.AddHttpClient<ISearchService, CachedSearchService>(client =>
             {
-                HeaderUtility.ConfigureHttpClient(x);
+                HeaderUtility.ConfigureHttpClient(client);
+            }).ConfigureHttpMessageHandlerBuilder(handler =>
+            {
+                if (handler.PrimaryHandler is HttpClientHandler clientHandler)
+                    clientHandler.UseCookies = true;
             });
             services.AddControllers();
             services.AddSwaggerGen(c =>
