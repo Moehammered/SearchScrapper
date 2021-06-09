@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="SearchQueryTool.Controls.SearchResultBanner"
              mc:Ignorable="d" 
-             d:DesignHeight="64" d:DesignWidth="400">
+             d:DesignHeight="128" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -18,7 +18,7 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="4">
             <Label BorderBrush="AliceBlue" BorderThickness="3" Content="Heading"/>
-            <TextBlock Text="{Binding Heading}" TextWrapping="Wrap" FontSize="10"/>
+            <TextBlock Text="{Binding Heading}" VerticalAlignment="Stretch" TextWrapping="Wrap"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Margin="4">
             <Label BorderBrush="AliceBlue" BorderThickness="3" Content="Url"/>

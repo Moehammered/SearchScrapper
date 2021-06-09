@@ -25,14 +25,14 @@ namespace SearchScraperWebService.Controllers
         private IHtmlParser HtmlParser { get; set; }
 
         public GoogleSearchController(
-            IOptions<SearchResultCaptureTemplate> regex,
-            IOptions<SearchEngineConfiguration> engineConfigs,
+            IHtmlParser parser,
+            ISearchEngineConfiguration engineConfigs,
             ISearchService service
             )
         {
-            GoogleConfig = engineConfigs.Value;
+            GoogleConfig = engineConfigs;
             SearchSvc = service;
-            HtmlParser = new SearchResultRegex(regex.Value);
+            HtmlParser = parser;
         }
 
         [HttpGet("Search")]

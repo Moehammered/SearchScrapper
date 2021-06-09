@@ -1,7 +1,6 @@
 ﻿using SearchQueryViewModels.Base;
 using SearchQueryViewModels.Commands;
 using SearchScraping.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -44,7 +43,16 @@ namespace SearchQueryViewModels.Search
         };
 
         public ICommand FetchResultsAsync { get; set; }
-        public bool Ready { get; set; } = true;
+        private bool ready { get; set; } = true;
+        public bool Ready 
+        { 
+            get => ready; 
+            set
+            {
+                ready = value;
+                RaisePropertyChanged();
+            }
+        }
         public string WebServer { get; set; } = "https://localhost:44368";
 
         private readonly HttpClient Client;
@@ -54,16 +62,15 @@ namespace SearchQueryViewModels.Search
         {
             Client = new HttpClient();
             FetchResultsAsync = new AsyncGenericCommand<object>(PerformSearchAsync, (o) => Ready);
-            SerialisationOptions = new JsonSerializerOptions() 
-            { 
-                PropertyNameCaseInsensitive = true 
+            SerialisationOptions = new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
             };
         }
 
         private async Task PerformSearchAsync(object param)
         {
             Ready = false;
-            RaisePropertyChanged(nameof(Ready));
 
             var restCall = $"{WebServer}/api/GoogleSearch/Search?" +
                     $"query={SearchQuery.SearchTerm}" +
@@ -72,9 +79,7 @@ namespace SearchQueryViewModels.Search
 
             var results = JsonSerializer.Deserialize<IEnumerable<SearchResult>>(json, SerialisationOptions);
             Results = results.Select(x => new SearchResultViewModel(x));
-
             Ready = true;
-            RaisePropertyChanged(nameof(Ready));
         }
     }
 }

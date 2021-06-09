@@ -14,19 +14,31 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Controls:QueryControl DataContext="{Binding SearchQuery}" Grid.Row="0"/>
-        <Button Command="{Binding FetchResultsAsync}" CommandParameter="nothing" IsEnabled="True" Content="Search" HorizontalAlignment="Left" Margin="84,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
-        <Controls:SearchResultsList Grid.Row="2"/>
-        <DataGrid ItemsSource="{Binding Results}" SelectionMode="Single" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="3" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="Auto" Header="Position" Binding="{Binding Position}"/>
-                <DataGridTextColumn Width="Auto" Header="Heading" Binding="{Binding Heading}"/>
-                <DataGridHyperlinkColumn Width="*" Header="Url" Binding="{Binding Url}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" >
+            <Controls:QueryControl HorizontalAlignment="Stretch" DataContext="{Binding SearchQuery}"/>
+            <Button Command="{Binding FetchResultsAsync}" CommandParameter="nothing"
+                    IsEnabled="True" Content="Search" HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
+        </StackPanel>
+        <GroupBox Grid.Row="1" Header="Matches">
+            <Controls:SearchResultsList/>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Header="All Results">
+            <DataGrid ItemsSource="{Binding Results}" SelectionMode="Single" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="Auto" Header="Position" Binding="{Binding Position}"/>
+                    <DataGridTextColumn Width="Auto" Header="Heading" Binding="{Binding Heading}"/>
+                    <DataGridHyperlinkColumn Width="*" Header="Url" Binding="{Binding Url}">
+                        <DataGridHyperlinkColumn.ElementStyle>
+                            <Style>
+                                <EventSetter Event="Hyperlink.Click" Handler="Link_Click"/>
+                            </Style>
+                        </DataGridHyperlinkColumn.ElementStyle>
+                    </DataGridHyperlinkColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
     </Grid>
 </Window>

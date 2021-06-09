@@ -16,8 +16,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*" MaxWidth="100"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="0" x:Name="TermGroup" Header="Search Term">
-            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Stretch">
+        <GroupBox Grid.Column="0" Header="Search Term">
+            <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <TextBox SpellCheck.IsEnabled="True" HorizontalAlignment="Stretch" 
                          Background="LightGray" Text="{Binding SearchTerm, Mode=TwoWay}" 
                          DockPanel.Dock="Left" TextWrapping="Wrap" 
@@ -25,7 +25,7 @@
             </DockPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="URL to look for">
-            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <TextBox x:Name="UrlText" HorizontalAlignment="Stretch" Background="LightGray" Text="{Binding Url, Mode=TwoWay}" DockPanel.Dock="Left" />
             </DockPanel>
         </GroupBox>
