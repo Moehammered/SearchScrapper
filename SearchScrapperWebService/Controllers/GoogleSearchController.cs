@@ -16,6 +16,8 @@ namespace SearchScraperWebService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ValidateEmptyStringParams]
+    [ValidatePositiveIntegerParams]
     public class GoogleSearchController : ControllerBase
     {
         private ISearchEngineConfiguration GoogleConfig { get; set; }
@@ -34,7 +36,6 @@ namespace SearchScraperWebService.Controllers
         }
 
         [HttpGet("Search")]
-        [ValidateEmptyStringParams]
         [ProducesResponseType(typeof(IEnumerable<SearchResult>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> SearchAsync(CancellationToken ct, string query, uint resultCount = 100)
@@ -50,8 +51,6 @@ namespace SearchScraperWebService.Controllers
         }
 
         [HttpGet("Ranking")]
-        [ValidateEmptyStringParams]
-        [ValidatePositiveIntegerParams]
         [ProducesResponseType(typeof(IEnumerable<int>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> FindRankingAsync(CancellationToken ct, string query, string url, uint resultCount = 100)
@@ -72,7 +71,6 @@ namespace SearchScraperWebService.Controllers
 
         // debugging -- dummy versions
         [HttpGet("DummySearch")]
-        [ValidateEmptyStringParams]
         [ProducesResponseType(typeof(IEnumerable<SearchResult>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> SearchDummyAsync(CancellationToken ct, string query, uint resultCount = 100)
@@ -88,8 +86,7 @@ namespace SearchScraperWebService.Controllers
         }
 
         [HttpGet("DummyRanking")]
-        [ValidateEmptyStringParams]
-        [ValidatePositiveIntegerParams]
+
         [ProducesResponseType(typeof(IEnumerable<int>), 200)]
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> FindRankingDummyAsync(CancellationToken ct, string query, string url, uint resultCount = 100)

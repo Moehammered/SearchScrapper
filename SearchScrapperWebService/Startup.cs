@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SearchScraperWebService.Filters;
 using SearchScraping.Interfaces;
 using SearchScraping.Models.Configuration;
 using SearchScraping.Services;
@@ -54,7 +56,11 @@ namespace SearchScraperWebService
                 if (handler.PrimaryHandler is HttpClientHandler clientHandler)
                     clientHandler.UseCookies = true;
             });
-            services.AddControllers();
+            services.AddControllers(x =>
+            {
+                x.Filters.Add(typeof(ExceptionLoggerFilterAttribute));
+                x.Filters.Add(typeof(RequestLoggingFilterAttribute));
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SearchScrapperWebService", Version = "v1" });
