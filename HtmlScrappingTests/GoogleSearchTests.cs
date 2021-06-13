@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace HtmlScrappingTests
+namespace HtmlScrapingTests
 {
     [TestClass]
     public class GoogleSearchTests
@@ -41,7 +41,7 @@ namespace HtmlScrappingTests
 
             var baseUrl = @"https://www.google.com.au/search?q=conveyancing+software&";
             var queries = Enumerable.Range(0, itemCount / itemsPerPage)
-                .Select(index => $@"{baseUrl}num={itemsPerPage}&start={index*itemsPerPage}");
+                .Select(index => $@"{baseUrl}num={itemsPerPage}&start={index * itemsPerPage}");
 
             using (var client = new HttpClient())
             {

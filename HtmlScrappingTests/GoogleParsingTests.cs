@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace HtmlScrappingTests
+namespace HtmlScrapingTests
 {
     [TestClass]
     public class GoogleParsingTests
@@ -147,7 +146,7 @@ namespace HtmlScrappingTests
                 ++index;
 
                 if (match.Groups.Count > 1)
-                    yield return new SearchResult() 
+                    yield return new SearchResult()
                     {
                         Position = index,
                         Url = match.Groups[1].Value,

@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SearchScrapping\SearchScraping.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="google-parsing-tests\google-au_0.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

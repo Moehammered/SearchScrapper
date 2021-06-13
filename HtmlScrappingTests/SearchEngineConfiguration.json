@@ -7,7 +7,7 @@
       "countParam": "num",
       "maxCount": "100",
       "offsetParam": "start",
-      "regex": "<div class=\"{_queryResultClass_}\">+?<a[^>]+?href=\"\\/url\\?q=(http[s]?\\:.+?)\">.+?div.+?>(.+?)<\\/div><\\/h\\d?>",
+      "regex": "<div class=\"ZINbbc xpd O9g5cc uUPGi\".+?<div class=\"{_queryResultClass_}\">+?<a[^>]+?href=\"\\/url\\?q=(http[s]?\\:.+?)\">.+?div.+?>(.+?)<\\/div><\\/h\\d?>",
       "divClassTemplate": "{_queryResultClass_}",
       "divClass": "kCrYT"
     },
